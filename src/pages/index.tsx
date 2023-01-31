@@ -4,28 +4,52 @@ import { graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import * as React from "react"
 import Layout from "../components/layout"
+import Sidebar from '../components/sidebar'
+
+const ArticleList = styled.div`
+  padding-right: 20%;
+  background-color: rgb(251, 251, 251);
+`
 
 const Article = styled.article`
-  margin: 2em;
+  margin: 1em;
   display: flex;
-  flex-direction: row;
   height: 150px;
+  background-color: 'white';
 `
 
 const Thumbnail = styled(GatsbyImage)`
   height: 100%;
-  width: 150px;
+  width: 20%;
   margin: 1em;
+  border-radius: 20px;
 `
 
-const Preview = styled.div`
+const TextPreview = styled.div`
   flex: 1;
+`
+
+const Title = styled.h2`
+  font-family: "PT Serif";
+  font-weight: 400;
+  font-size: 30px;
+  font-style: normal;
+  color: #263959;
+`
+
+const Excerpt = styled.p`
+  font-family: "Lato";
+  font-weight: 400;
+  font-size: 16px;
+  font-style: normal;
+  color: #515151;
 `
 
 const IndexPage: React.FC<PageProps> = ({ data }) => {
   return (
     <Layout>
-      <h1>Johan's Blog</h1>
+      <Sidebar/>
+      <ArticleList>
       {
       data.allMdx.nodes.map( node => (
         <Article key={node.id}>
@@ -37,14 +61,15 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
               node.frontmatter.img.childImageSharp.gatsbyImageData
             } alt={node.id}/>
           }
-          <Preview>
-            <h2>{node.frontmatter.title}</h2>
+          <TextPreview>
+            <Title>{node.frontmatter.title}</Title>
             <p>{node.excerpt}</p>
             <span>{node.frontmatter.date}</span>
-          </Preview>
+          </TextPreview>
         </Article>
       ))
       }
+      </ArticleList>
     </Layout>
   )
 }

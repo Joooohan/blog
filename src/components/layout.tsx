@@ -1,11 +1,19 @@
-import React from 'react'
-import type { PageProps } from "gatsby"
+import styled from '@emotion/styled';
+import React from 'react';
+interface Props {
+  children: React.ReactNode;
+}
 
-const Layout = ({ children }) => {
+const Container = styled.div`
+  display: flex;
+`
+
+
+const Layout: React.FC<Props> = ({ children }) => {
   return (
-    <div>
+    <Container>
       {children}
-    </div>
+    </Container>
   )
 }
 
