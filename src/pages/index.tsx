@@ -1,6 +1,5 @@
 import styled from '@emotion/styled'
-import type { HeadFC, PageProps } from "gatsby"
-import { graphql } from "gatsby"
+import { HeadFC, PageProps, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import * as React from "react"
 import Layout from "../components/layout"
@@ -45,7 +44,7 @@ const Excerpt = styled.p`
   color: #515151;
 `
 
-const IndexPage: React.FC<PageProps> = ({ data }) => {
+const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
   return (
     <Layout>
       <Sidebar/>
@@ -54,17 +53,15 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
       data.allMdx.nodes.map( node => (
         <Article key={node.id}>
           {
-            node.frontmatter.img &&
-            node.frontmatter.img.childImageSharp &&
-            node.frontmatter.img.childImageSharp.gatsbyImageData &&
+            node.frontmatter?.img?.childImageSharp?.gatsbyImageData &&
             <Thumbnail image={
               node.frontmatter.img.childImageSharp.gatsbyImageData
             } alt={node.id}/>
           }
           <TextPreview>
-            <Title>{node.frontmatter.title}</Title>
-            <p>{node.excerpt}</p>
-            <span>{node.frontmatter.date}</span>
+            <Title>{node.frontmatter?.title}</Title>
+            <Excerpt>{node.excerpt}</Excerpt>
+            <span>{node.frontmatter?.date}</span>
           </TextPreview>
         </Article>
       ))
@@ -77,7 +74,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
 export default IndexPage
 
 export const query = graphql`
-query {
+query IndexPage {
   allMdx {
     nodes {
       id
