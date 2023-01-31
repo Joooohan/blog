@@ -6,42 +6,54 @@ import Layout from "../components/layout"
 import Sidebar from '../components/sidebar'
 
 const ArticleList = styled.div`
-  padding-right: 20%;
+  padding: 20px 20px 20px 260px;
   background-color: rgb(251, 251, 251);
+  display: flex;
+  flex-wrap: wrap;
 `
 
 const Article = styled.article`
-  margin: 1em;
+  margin-bottom: 1.5rem;
   display: flex;
-  height: 150px;
+  flex-direction: row;
   background-color: 'white';
+  border-radius: 10px;
+  width: 100%;
+  box-sizing: border-box;
+  align-items: stretch;
+  box-shadow: 0 1px 1px 0 rgb(31 35 46 / 15%);
 `
 
 const Thumbnail = styled(GatsbyImage)`
   height: 100%;
-  width: 20%;
-  margin: 1em;
-  border-radius: 20px;
+  width: 30%;
+  background-position: 50% 50%;
+  max-width: 100%;
+  min-height: 11rem;
 `
 
 const TextPreview = styled.div`
-  flex: 1;
+  width: 70%;
+  padding: 1rem;
+  margin: 0;
 `
 
 const Title = styled.h2`
-  font-family: "PT Serif";
+  font-family: 'PT Serif', serif;
   font-weight: 400;
   font-size: 30px;
-  font-style: normal;
   color: #263959;
+  line-height: 45px;
+  margin: 0 0 10px;
 `
 
 const Excerpt = styled.p`
-  font-family: "Lato";
+  font-family: Lato, sans-serif;
   font-weight: 400;
   font-size: 16px;
-  font-style: normal;
   color: #515151;
+  line-height: 24px;
+  margin: 0 0 10px;
 `
 
 const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {

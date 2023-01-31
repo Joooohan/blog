@@ -5,7 +5,8 @@ interface Props {
 }
 
 const Container = styled.div`
-  display: flex;
+  max-width: 1250px;
+  display: block;
 `
 
 

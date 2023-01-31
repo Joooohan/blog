@@ -26,9 +26,24 @@ const config: GatsbyConfig = {
       resolve: 'gatsby-source-filesystem',
       options: {
         "name": "blog",
-        "path": "./content/blog/"
+        "path": "./content/"
       },
-    }
+    },
+    {
+      resolve: `gatsby-omni-font-loader`,
+      options: {
+        enableListener: true,
+        preconnect: [
+          `https://fonts.googleapis.com`, `https://fonts.gstatic.com`
+        ],
+        web: [
+          {
+            name: `Open Sans`,
+            file: `https://fonts.googleapis.com/css2?family=Lato:400&display=swap`,
+          },
+        ],
+      },
+    },
   ]
 };
 
