@@ -1,5 +1,5 @@
 import styled from '@emotion/styled'
-import { HeadFC, PageProps, graphql } from "gatsby"
+import { HeadFC, Link, PageProps, graphql } from "gatsby"
 import { GatsbyImage } from "gatsby-plugin-image"
 import * as React from "react"
 import Layout from "../components/layout"
@@ -80,7 +80,9 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
             } alt={node.id}/>
           }
           <TextPreview>
-            <Title>{node.frontmatter?.title}</Title>
+            <Link to={`/${node.frontmatter?.slug}`}>
+              <Title>{node.frontmatter?.title}</Title>
+            </Link>
             <Excerpt>{node.excerpt}</Excerpt>
             <span>{node.frontmatter?.date}</span>
           </TextPreview>
@@ -101,6 +103,7 @@ query IndexPage {
       id
       frontmatter {
         title
+        slug
         date(formatString: "YYYY, MMM DD")
         img {
           childImageSharp {
