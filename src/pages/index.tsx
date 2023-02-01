@@ -14,7 +14,7 @@ const ArticleList = styled.div`
   flex-wrap: wrap;
 `
 
-const Article = styled.article`
+const Post = styled.article`
   margin-bottom: 1.5rem;
   display: flex;
   flex-direction: row;
@@ -24,6 +24,13 @@ const Article = styled.article`
   box-sizing: border-box;
   align-items: stretch;
   box-shadow: 0 1px 1px 0 rgb(31 35 46 / 15%);
+  overflow: hidden;
+  transition-duration: .3s;
+  transition-property: all;
+  &:hover {
+    transform: translate(0px, -2px);
+    box-shadow: 0px 15px 45px -10px rgba(10, 16, 34, .2);
+  }
 `
 
 const Thumbnail = styled(GatsbyImage)`
@@ -65,7 +72,7 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
       <ArticleList>
       {
       data.allMdx.nodes.map( node => (
-        <Article key={node.id}>
+        <Post key={node.id}>
           {
             node.frontmatter?.img?.childImageSharp?.gatsbyImageData &&
             <Thumbnail image={
@@ -77,7 +84,7 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
             <Excerpt>{node.excerpt}</Excerpt>
             <span>{node.frontmatter?.date}</span>
           </TextPreview>
-        </Article>
+        </Post>
       ))
       }
       </ArticleList>
