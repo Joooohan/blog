@@ -5,6 +5,8 @@ import * as React from "react"
 import Layout from "../components/layout"
 import Sidebar from '../components/sidebar'
 
+// demo https://flexible-gatsby.netlify.app/
+
 const ArticleList = styled.div`
   padding: 20px 20px 20px 260px;
   background-color: rgb(251, 251, 251);
