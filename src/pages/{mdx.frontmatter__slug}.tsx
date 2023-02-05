@@ -8,12 +8,20 @@ import Sidebar from '../components/sidebar'
 
 const Content = styled.div`
   padding: 20px 20px 20px 260px;
-  background-color: rgb(251, 251, 251);
   display: inline-block;
   flex-direction: column;
   flex-wrap: wrap;
   font-family: Lato, sans-serif;
   font-weight: 400;
+`
+
+const PostContent = styled.div`
+  background-color: white;
+  margin-left: 15px;
+`
+
+const TextContent = styled.div`
+  padding: 15px;
 `
 
 const Cover = styled(GatsbyImage)`
@@ -44,7 +52,7 @@ const Date = styled.span`
 
 const P = styled.p`
   font-family: Lato, sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   line-height: 24px;
   color: #515151;
@@ -92,22 +100,26 @@ const BlogPost: React.FC<PageProps<Queries.BlogPostQuery>> = ({ children, data }
     <Layout>
       <Sidebar/>
       <Content>
-        {img ? <Cover image={img} alt={"profile"}/> : null }
-        <Header>
-          <Title>{data.mdx?.frontmatter?.title}</Title>
-          <Date>{data.mdx?.frontmatter?.date}</Date>
-        </Header>
-        <MDXProvider
-          components={{
-            p: P,
-            h2: H2,
-            li: Li,
-            blockquote: Blockquote,
-            img: Img,
-          }}
-        >
-          {children}
-        </MDXProvider>
+        <PostContent>
+          {img ? <Cover image={img} alt={"profile"}/> : null }
+          <Header>
+            <Title>{data.mdx?.frontmatter?.title}</Title>
+            <Date>{data.mdx?.frontmatter?.date}</Date>
+          </Header>
+          <TextContent>
+            <MDXProvider
+              components={{
+                p: P,
+                h2: H2,
+                li: Li,
+                blockquote: Blockquote,
+                img: Img,
+              }}
+            >
+              {children}
+            </MDXProvider>
+          </TextContent>
+        </PostContent>
       </Content>
     </Layout>
   )

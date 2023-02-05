@@ -13,7 +13,8 @@ const Bar = styled.div`
   top: 0;
   padding: 20px 10px;
   width: 240px;
-  font-family: Lato, sans-serif;
+  font-family: Lato,sans-serif;
+  background-color: white;
 `
 
 const Header = styled.div`

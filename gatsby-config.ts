@@ -51,7 +51,7 @@ const config: GatsbyConfig = {
         web: [
           {
             name: `Open Sans`,
-            file: `https://fonts.googleapis.com/css2?family=Lato:400&display=swap`,
+            file: `https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=PT+Serif&display=swap`,
           },
         ],
       },

@@ -9,7 +9,6 @@ import Sidebar from '../components/sidebar'
 
 const Content = styled.div`
   padding: 20px 20px 20px 260px;
-  background-color: rgb(251, 251, 251);
   display: flex;
   flex-wrap: wrap;
 `
@@ -18,7 +17,7 @@ const Post = styled.article`
   margin-bottom: 1.5rem;
   display: flex;
   flex-direction: row;
-  background-color: 'white';
+  background-color: #FFFFFF;
   border-radius: 10px;
   width: 100%;
   box-sizing: border-box;
@@ -49,7 +48,7 @@ const TextPreview = styled.div`
 
 const Title = styled.h2`
   font-family: 'PT Serif', serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 30px;
   color: #263959;
   line-height: 45px;
@@ -58,11 +57,19 @@ const Title = styled.h2`
 
 const Excerpt = styled.p`
   font-family: Lato, sans-serif;
-  font-weight: 400;
+  font-weight: 300;
   font-size: 16px;
   color: #515151;
   line-height: 24px;
   margin: 0 0 10px;
+`
+
+const Date = styled.span`
+  font-family: Lato, sans-serif;
+  font-weight: 400;
+  font-size: 12px;
+  color: #515151;
+  line-height: 18px;
 `
 
 const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
@@ -87,7 +94,7 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
               <Title>{node.frontmatter?.title}</Title>
             </Link>
             <Excerpt>{node.excerpt}</Excerpt>
-            <span>{node.frontmatter?.date}</span>
+            <Date>{node.frontmatter?.date}</Date>
           </TextPreview>
         </Post>
       ))

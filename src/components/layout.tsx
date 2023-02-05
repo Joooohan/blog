@@ -5,15 +5,21 @@ interface Props {
 }
 
 const Container = styled.div`
-  max-width: 1250px;
   display: block;
+  background-color: rgb(251, 251, 251);
+`
+
+const Content = styled.div`
+  max-width: 1250px;
 `
 
 
 const Layout: React.FC<Props> = ({ children }) => {
   return (
     <Container>
-      {children}
+      <Content>
+        {children}
+      </Content>
     </Container>
   )
 }
