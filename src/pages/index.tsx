@@ -7,7 +7,7 @@ import Sidebar from '../components/sidebar'
 
 // demo https://flexible-gatsby.netlify.app/
 
-const ArticleList = styled.div`
+const Content = styled.div`
   padding: 20px 20px 20px 260px;
   background-color: rgb(251, 251, 251);
   display: flex;
@@ -69,18 +69,20 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
   return (
     <Layout>
       <Sidebar/>
-      <ArticleList>
+      <Content>
       {
       data.allMdx.nodes.map( node => (
         <Post key={node.id}>
           {
             node.frontmatter?.img?.childImageSharp?.gatsbyImageData &&
             <Thumbnail image={
-              node.frontmatter.img.childImageSharp.gatsbyImageData
+            node.frontmatter.img.childImageSharp.gatsbyImageData
             } alt={node.id}/>
           }
           <TextPreview>
-            <Link to={`/${node.frontmatter?.slug}`}>
+            <Link to={`/${node.frontmatter?.slug}`} style={{
+              'text-decoration': 'none',
+            }}>
               <Title>{node.frontmatter?.title}</Title>
             </Link>
             <Excerpt>{node.excerpt}</Excerpt>
@@ -89,7 +91,7 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
         </Post>
       ))
       }
-      </ArticleList>
+      </Content>
     </Layout>
   )
 }
