@@ -81,6 +81,7 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
           }
           <TextPreview>
             <Link to={`/${node.frontmatter?.slug}`} style={{
+              // @ts-ignore
               'text-decoration': 'none',
             }}>
               <Title>{node.frontmatter?.title}</Title>

@@ -9,7 +9,7 @@ import Sidebar from '../components/sidebar'
 const Content = styled.div`
   padding: 20px 20px 20px 260px;
   background-color: rgb(251, 251, 251);
-  display: flex;
+  display: inline-block;
   flex-direction: column;
   flex-wrap: wrap;
   font-family: Lato, sans-serif;
@@ -79,18 +79,20 @@ const H2 = styled.h2`
 const Img = styled.img`
   width: 500px;
   max-height: 400px;
+  position: relative;
 `
 
 
 const BlogPost: React.FC<PageProps<Queries.BlogPostQuery>> = ({ children, data }) => {
 
+  // @ts-ignore
   const img = getImage(data.mdx?.frontmatter?.img);
 
   return (
     <Layout>
       <Sidebar/>
       <Content>
-        <Cover image={img} alt={"profile"}/>
+        {img ? <Cover image={img} alt={"profile"}/> : null }
         <Header>
           <Title>{data.mdx?.frontmatter?.title}</Title>
           <Date>{data.mdx?.frontmatter?.date}</Date>
