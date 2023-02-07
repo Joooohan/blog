@@ -108,7 +108,7 @@ export default IndexPage
 
 export const query = graphql`
 query IndexPage {
-  allMdx {
+  allMdx(sort: {frontmatter: {date: DESC}}) {
     nodes {
       id
       frontmatter {
