@@ -17,6 +17,7 @@ const Container = styled.div`
   display: block;
   background-color: rgb(251, 251, 251);
   height: 100%;
+  margin: 0px;
 `
 
 const Content = styled.div`
