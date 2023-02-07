@@ -88,6 +88,7 @@ const Img = styled.img`
   width: 500px;
   max-height: 400px;
   position: relative;
+  max-width: 1200px;
 `
 
 
