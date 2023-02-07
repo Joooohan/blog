@@ -1,7 +1,17 @@
+/** @jsx jsx */
+import { css, jsx } from '@emotion/react';
 import styled from '@emotion/styled';
+import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import React from 'react';
+import { colors, fonts } from './layout';
+
+const centerText = css`
+  text-align: center;
+  font-family: ${fonts.primary};
+`
 
 const Bar = styled.div`
   display: flex;
@@ -13,8 +23,9 @@ const Bar = styled.div`
   top: 0;
   padding: 20px 10px;
   width: 240px;
-  font-family: Lato,sans-serif;
+  font-family: ${fonts.primary};
   background-color: white;
+  box-sizing: border-box;
 `
 
 const Header = styled.div`
@@ -26,31 +37,20 @@ const Footer = styled.div`
 `
 
 const AuthorName = styled.div`
-  font-family: "PT Serif",serif;
+  font-family: ${fonts.secondary};
   font-size: 16px;
   font-weight: 700;
   padding-bottom: 10px;
   text-transform: uppercase;
   margin: 0 0 10px;
   position: relative;
-  &::after {
-    content: "";
-    display: block;
-    height: 2px;
-    width: 2px;
-    transform: translateY(-50%);
-    position: absolute;
-    top: 50%;
-    right: 0;
-    background-color: #515151;
-  }
 `
 
 const Bio = styled.p`
-  font-family: 'Lato' ,sans-serif;
+  font-family: ${fonts.primary};
   line-height: 1.5;
   font-size: 16px;
-  color: #515151;
+  color: ${colors.primary};
 `
 
 const Avatar = styled(GatsbyImage)`
@@ -77,6 +77,17 @@ const Sidebar = () => {
         }
       }
     }
+    site {
+      siteMetadata {
+        title
+        authorName
+        social {
+          github
+          mail
+          linkedin
+        }
+      }
+    }
   }
   `);
 
@@ -87,12 +98,54 @@ const Sidebar = () => {
     <Header>
       {image && <Avatar image={image} alt="profile.jpg"/>}
       <AuthorName>
-        Johan Leduc
+        {data.site.siteMetadata.authorName}
       </AuthorName>
       <Bio>I am a developer focusing on ML and data engineering. Always hungry to keep learning.</Bio>
     </Header>
-    <Footer>
-
+    <Footer css={centerText}>
+      <section>
+        <h3 css={css`
+          text-transform: uppercase;
+          font-size: 12px;
+          color: ${colors.primary};
+        `}>Contact me</h3>
+        <ul css={css`
+          list-style: none;
+          padding-inline-start: 0px;
+          li {
+            display: inline-block;
+          }
+          a {
+            padding: 10px;
+            color: ${colors.primary};
+          }
+        `}>
+          {data.site.siteMetadata.social.github &&
+          <li>
+            <a href={data.site.siteMetadata.social.github}>
+              <FontAwesomeIcon icon={faGithub} />
+            </a>
+          </li>}
+          {data.site.siteMetadata.social.linkedin &&
+          <li>
+            <a href={data.site.siteMetadata.social.linkedin}>
+              <FontAwesomeIcon icon={faLinkedin} />
+            </a>
+          </li>}
+          {data.site.siteMetadata.social.mail &&
+          <li>
+            <a href={`mailto:${data.site.siteMetadata.social.mail}`}>
+              <FontAwesomeIcon icon={faEnvelopeOpen} />
+            </a>
+          </li>}
+        </ul>
+      </section>
+      <div css={css`
+        font-size: 14px;
+        color: ${colors.primary};
+      `}>
+        <p>{new Date().getFullYear()} &copy; {data.site.siteMetadata.authorName}</p>
+      </div>
     </Footer>
   </Bar>
   )
