@@ -40,10 +40,23 @@ const AuthorName = styled.div`
   font-family: ${fonts.secondary};
   font-size: 16px;
   font-weight: 700;
-  padding-bottom: 10px;
+  padding-bottom: 15px;
   text-transform: uppercase;
   margin: 0 0 10px;
   position: relative;
+
+  &::after {
+    content: "";
+    background-color: ${colors.primary};
+    position: absolute;
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 100%;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
 `
 
 const Bio = styled.p`
@@ -108,6 +121,27 @@ const Sidebar = () => {
           text-transform: uppercase;
           font-size: 12px;
           color: ${colors.primary};
+          position: relative;
+          &::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: calc(50% - 48px);
+            transform: translateY(-50%);
+            background-color: ${colors.primary};
+            height: 2px;
+          }
+          &::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            width: calc(50% - 48px);
+            transform: translateY(-50%);
+            background-color: ${colors.primary};
+            height: 2px;
+          }
         `}>Contact me</h3>
         <ul css={css`
           list-style: none;
