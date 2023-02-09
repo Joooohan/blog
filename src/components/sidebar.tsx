@@ -5,7 +5,7 @@ import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelopeOpen } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { StaticImage } from 'gatsby-plugin-image';
 import { colors, fonts } from './layout';
 
 const centerText = css`
@@ -66,10 +66,10 @@ const Bio = styled.p`
   color: ${colors.primary};
 `
 
-const Avatar = styled(GatsbyImage)`
+const AvatarStyle = css`
   border-radius: 50%;
-  height: 100px;
-  width: 100px;
+  height: 140px;
+  width: 140px;
   margin: 0 auto 10px;
   overflow: hidden;
   transition: transform 0.35s;
@@ -104,12 +104,12 @@ const Sidebar = () => {
   }
   `);
 
-  const image = getImage(data.allImageSharp.edges[0].node.gatsbyImageData);
-
   return (
   <Bar>
     <Header>
-      {image && <Avatar image={image} alt="profile.jpg"/>}
+      <StaticImage
+        css={AvatarStyle} alt="profile picture" src="../images/profile.jpg"
+      />
       <AuthorName>
         {data.site.siteMetadata.authorName}
       </AuthorName>
