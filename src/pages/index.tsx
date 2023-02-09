@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 import { HeadFC, Link, PageProps, graphql } from "gatsby"
-import { GatsbyImage } from "gatsby-plugin-image"
+import { GatsbyImage, getImage } from "gatsby-plugin-image"
 import * as React from "react"
 import Layout from "../components/layout"
 import Sidebar from '../components/sidebar'
@@ -81,10 +81,9 @@ const IndexPage: React.FC<PageProps<Queries.IndexPageQuery>> = ({ data }) => {
       data.allMdx.nodes.map( node => (
         <Post key={node.id}>
           {
-            node.frontmatter?.img?.childImageSharp?.gatsbyImageData &&
-            <Thumbnail image={
-            node.frontmatter.img.childImageSharp.gatsbyImageData
-            } alt={node.id}/>
+            node.frontmatter?.img &&
+            // @ts-ignore
+            <Thumbnail image={getImage(node.frontmatter?.img)} alt={node.id}/>
           }
           <TextPreview>
             <Link to={`/${node.frontmatter?.slug}`} style={{

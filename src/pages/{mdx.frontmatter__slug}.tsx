@@ -102,7 +102,7 @@ const BlogPost: React.FC<PageProps<Queries.BlogPostQuery>> = ({ children, data }
       <Sidebar/>
       <Content>
         <PostContent>
-          {img ? <Cover image={img} alt={"profile"}/> : null }
+          {img ? <Cover image={img} alt={"thumbnail"}/> : null }
           <Header>
             <Title>{data.mdx?.frontmatter?.title}</Title>
             <Date>{data.mdx?.frontmatter?.date}</Date>
